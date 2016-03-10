@@ -21,7 +21,7 @@
       var radius = originOffset - ((width / 2) + 2);
       var reset = (type === 'line')? elemWidth : diameter * Math.PI;
       var animationTarget;
-      var thetaDelta = parseFloat(glSpeed) || 1;
+      var thetaDelta = parseFloat(attrs.glSpeed) || 1;
       
       function doAnim() {
         if(type === 'circle') {
