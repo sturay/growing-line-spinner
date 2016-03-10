@@ -1,8 +1,8 @@
 (function(){
   'use strict';
-  angular.module('glspinner', [])
+  angular.module('glSpinner', [])
 
-  .directive('glspinner', ['$window', function($window){
+  .directive('glSpinner', ['$window', function($window){
 
     var animationIndex = 0;
 
