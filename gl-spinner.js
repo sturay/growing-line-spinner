@@ -13,16 +13,16 @@
       var shape = attrs.glId;
       var type = attrs.glType;
       var width = attrs.glStrokeWidth || 6;
-      var diameter = attrs.glDiameter || 24;
-      var stroke = attrs.glStroke || 5;
-      var opacity = attrs.glOpacity || 1/5;
+      var diameter = parseInt(attrs.glDiameter) || 24;
+      var stroke = attrs.glStroke || '#000000';
+      var opacity = parseFloat(attrs.glOpacity) || .2;
       var elemWidth = element[0].clientWidth;
       var originOffset = (diameter === false)? 32 : diameter / 2;
       var radius = originOffset - ((width / 2) + 2);
       var reset = (type === 'line')? elemWidth : diameter * Math.PI;
       var animationTarget;
       var thetaDelta = parseFloat(attrs.glSpeed) || 1;
-      
+     
       function doAnim() {
         if(type === 'circle') {
           animationTarget.setAttribute("transform", "rotate(" + animationTarget.currentTheta + ")");
