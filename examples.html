@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>GL Spinner</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.angularjs.org/1.4.9/angular.js" data-semver="1.4.9"></script>
+    <script src="app.js"></script>
+    <script src="gl-spinner.js"></script>
+    <style>
+      glspinner[cc-type='line'] {width:100%;display:block;}
+    </style>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    <h1>Growing line spinner</h1>
+    <p>It should work with all Angular 1.x versions</p>
+    <p>This loader should offer the option to change the stroke width and diameter as required and the colour as needed along with the opacity. There is also a line version.</p>
+    <h2>Circular</h2>
+    <p>Most basic options: give it an id and a type and youre good to go 
+    <pre><glspinner cc-id="loader" cc-type="circle"></glspinner></pre></p>
+    <glspinner cc-id="loader" cc-type="circle"></glspinner>
+    <p>Don't forget to add the styles above for the line version</p> 
+    <glspinner cc-id="lined" cc-type="line" cc-opacity=".5" cc-stroke="#000" cc-stroke-width="2"></glspinner>
+    <p>Different sizes, stroke thickness and colours</p>
+    <glspinner cc-id="loader" cc-type="circle" cc-opacity=".9" cc-diameter="32" cc-stroke="#000" cc-stroke-width="1"></glspinner>
+    <glspinner cc-id="loader" cc-type="circle" cc-opacity="1" cc-diameter="22" cc-stroke="#58a" cc-stroke-width="3"></glspinner>
+    <glspinner cc-id="loader" cc-type="circle" cc-opacity=".9" cc-diameter="64" cc-stroke="#f00" cc-stroke-width="15"></glspinner>
+
+  </body>
+
+</html>
