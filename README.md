@@ -17,7 +17,7 @@ ___
 ## installation
  As with simple directives, simply include it in your root and point your scripts towards it calling the directive 'glspinner'.
 
-> var app = angular.module('plunker', ['glspinner']);
+> var app = angular.module('myApp', ['glspinner']);
 
 Add the next line to your stylesheet
 > glspinner[cc-type='line'] {width:100%;display:block;}
