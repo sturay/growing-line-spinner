@@ -11,6 +11,7 @@ ___
  - gl-diameter - The diameter of the spinner which if omitted defaults to 24
  - gl-stroke - this is the colour of the spinner. Stroke is used as it is an svg element. Default is rgb(0,0,0)
  - gl-opacity - How transparent do you want it? Default is .2 and is based on the css values of 0 to 1
+ - gl-speed - This is logarithmic. Below 48px, decimals are best to slow it down. Integers at that size larger than 1 make the speed look kinda silly. However, a radius of 72 and a speed of 2 or 3 could work quite well. It's up to you really.
  The linear options are identical except there is no need for the diameter option.
 ___
 
