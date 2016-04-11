@@ -6,7 +6,7 @@ ___
  For the circular option, there is the choice of diameter, stroke thickness, stroke colour and opacity.
  The speed is another matter and that is on my list of things to do.
  - gl-id - *Must be set
- - gl-type - *Must be set to either 'circle' or 'line' and cannot be missing
+ - gl-type - *Must be set to either 'circle', 'square' or 'line' and cannot be missing
  - gl-strokeWidth - The stroke width of the spinner. Defaults to 6
  - gl-diameter - The diameter of the spinner which if omitted defaults to 24
  - gl-stroke - this is the colour of the spinner. Stroke is used as it is an svg element. Default is rgb(0,0,0)
