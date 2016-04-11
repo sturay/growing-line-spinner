@@ -1,5 +1,7 @@
 (function(){
+
   'use strict';
+
   angular.module('glSpinner', [])
 
   .directive('glSpinner', ['$window', function($window){
@@ -19,10 +21,15 @@
       var elemWidth = element[0].clientWidth;
       var originOffset = (diameter === false)? 32 : diameter / 2;
       var radius = originOffset - ((width / 2) + 2);
-      var reset = (type === 'line')? elemWidth : diameter * Math.PI;
+      var reset;
+      switch(type){
+        case 'line':   reset = elemWidth;           break;
+        case 'circle': reset = diameter * Math.PI;  break;
+        case 'square': reset = (diameter - width) * 4;        break;
+      }
       var animationTarget;
       var thetaDelta = parseFloat(attrs.glSpeed) || 1;
-     
+      
       function doAnim() {
         if(type === 'circle') {
           animationTarget.setAttribute("transform", "rotate(" + animationTarget.currentTheta + ")");
@@ -92,8 +99,39 @@
         animationIndex++;
       }
       
+      else if (type == 'square') {
+        
+        var dims = diameter - width
+
+        element.html('<svg' +
+          ' width="'+diameter+'" height="'+diameter+'" viewBox="0 0 '+diameter+' '+diameter+'">' +
+            '<g transform="translate('+ width / 2+', '+width / 2+')">' +
+              ' <rect' +
+              ' id="'+shape + animationIndex +'"' +
+              ' fill="none"' +
+              ' stroke="'+stroke+'"' +
+              ' opacity="'+opacity+'"' +
+              ' stroke-width="'+width+'"' +
+              ' stroke-linecap="round"' +
+              ' stroke-miterlimit="10"' +
+              ' x="0"' + 
+              ' y="0"' + 
+              ' rx="'+width+'"' + 
+              ' ry="'+width+'"' + 
+              ' height="'+dims+'"' + 
+              ' width="'+dims+'">' +
+            '</rect>' +
+          '</g>' +
+        '</svg>');
+        
+        animationTarget = document.getElementById(shape+animationIndex);
+        animationTarget.currentTheta = 0;
+        doAnim();
+        animationIndex++;
+      }
+      
       else {
-        element.html('Types allowed for this element are \'line\' and \'circle\'');
+        element.html('Types allowed for this element are \'line\', \'circle\' and \'square\'');
       }
     },
   };
