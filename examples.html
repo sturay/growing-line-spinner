@@ -3,13 +3,14 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>GL Spinner</title>
+    <title>AngularJS Plunker</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://code.angularjs.org/1.4.9/angular.js" data-semver="1.4.9"></script>
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.9/angular.js" data-semver="1.4.9"></script>
     <script src="app.js"></script>
     <script src="gl-spinner.js"></script>
     <style>
-      glspinner[cc-type='line'] {width:100%;display:block;}
+      gl-spinner[gl-type='line'] {width:100%;display:block;height:10pt;}
     </style>
   </head>
 
@@ -41,12 +42,17 @@
     <gl-spinner gl-id="loader" gl-type="circle" gl-diameter="76" gl-stroke-width="1" gl-stroke="#ed1b1e" gl-opacity=".8"></gl-spinner>
     
     <p>Change the speed. If the spinner is small, it will be super fast, so with a diameter of 18, a speed of .25 isn't too bad. Large ones can be slow, so have a play.
-    <br>&lt;gl-spinner gl-id="loader" gl-type="circle" gl-diameter="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
+    <br>&lt;gl-spinner gl-id="loader" gl-type="circle" gl-diameter="76" gl-stroke="#ed1b1e" gl-speed="5"&gt;&lt;/gl-spinner&gt;</p>
     <gl-spinner gl-id="loader" gl-type="circle" gl-diameter="76" gl-stroke-width="1" gl-stroke="#ed1b1e" gl-opacity=".8" gl-speed="5"></gl-spinner>
     
-    <!--<p>Don't forget to add the styles above for the line version ( glspinner[cc-type='line'] {width:100%;display:block;} )</p> 
-    <gl-spinner gl-id="loader" gl-type="line" gl-diameter="76" gl-stroke-width="1" gl-stroke="#bada55" gl-opacity=".8" gl-speed="5"></gl-spinner>
-    <p>The only attribute that does not affect the line version is the diameter.</p>-->
+    <p>Don't forget to add the styles above for the line version ( glspinner[cc-type='line'] {width:100%;display:block;} )
+    <br>&lt;gl-spinner gl-id="loader" gl-type="line" gl-diameter="76" gl-stroke-width="4" gl-stroke="#bada55" gl-opacity=".8" gl-speed="5"&gt;&lt;/gl-spinner&gt;</p>
+    <gl-spinner gl-id="loader" gl-type="line" gl-diameter="76" gl-stroke-width="4" gl-stroke="#bada55" gl-opacity=".8" gl-speed="5"></gl-spinner>
+    <p>The only attribute that does not affect the line version is the diameter.</p>
+
+    <p>Look Ma!! a square one. nearly :-|.
+    <br>&lt;gl-spinner gl-id="loader" gl-type="square" gl-diameter="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
+    <gl-spinner gl-id="loader" gl-type="square" gl-diameter="76" gl-stroke-width="10" gl-stroke="#ed1b1e" gl-opacity=".8" gl-speed="1"></gl-spinner>
 
   </body>
 
