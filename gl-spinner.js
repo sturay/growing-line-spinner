@@ -11,6 +11,12 @@
   return {
     restrict: 'E',
     link: function (scope, element, attrs){
+
+      var requestAnimationFrame = window.requestAnimationFrame
+        || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame
+        || window.msRequestAnimationFrame
+        || function(callback) { return setTimeout(callback, 1000 / 60); };
       
       var shape = attrs.glId;
       var type = attrs.glType;
