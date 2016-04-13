@@ -21,6 +21,6 @@ ___
 > var app = angular.module('myApp', ['glspinner']);
 
 Add the next line to your stylesheet
-> glspinner[cc-type='line'] {width:100%;display:block;}
+> gl-spinner[gl-type='line'] {width:100%;display:block;height:auto;}
 
 You can see the thing working in this plunk: https://plnkr.co/edit/jnSbb1
