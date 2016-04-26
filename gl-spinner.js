@@ -1,146 +1,185 @@
-(function(){
+(function (angular) {
+    
+    "use strict";
 
-  'use strict';
+    angular.module('svgLoader', [])
+    .directive('ccLoader', function () {
+        var animationIndex = 0;
 
-  angular.module('glSpinner', [])
+        return {
+            restrict: 'E',
+            link: function (scope, element, attrs) {
 
-  .directive('glSpinner', ['$window', function($window){
+                var requestAnimationFrame = window.requestAnimationFrame
+                  || window.webkitRequestAnimationFrame
+                  || window.mozRequestAnimationFrame
+                  || window.msRequestAnimationFrame
+                  || function (callback) { return setTimeout(callback, 1000 / 60); };
 
-    var animationIndex = 0;
+                var shape = attrs.ccId;
+                var type = attrs.ccType;
+                var width = attrs.ccStrokeWidth || 6;
+                var diameter = attrs.ccDiameter || 24;
+                var stroke = attrs.ccStroke;
+                var opacity = attrs.ccOpacity || 1 / 5;
+                var elemWidth = element[0].clientWidth;
+                var elemHeight = element[0].parentElement.clientHeight;
+                var originOffset = (diameter === false) ? 32 : diameter / 2;
+                var originOffsetW = elemWidth / 2;
+                var originOffsetH = (elemHeight / 2) - (originOffset / 2);
+                var radius = originOffset - ((width / 2) + 2);
+                var reset;
+                var thetaDelta = parseFloat(attrs.ccSpeed) || 2;
 
-  return {
-    restrict: 'E',
-    link: function (scope, element, attrs){
+                switch (type) {
+                    case 'line':
+                        reset = elemWidth;
+                        break;
+                    case 'square':
+                        reset = diameter * 4;
+                        break;
+                    case 'circle':
+                        reset = diameter * Math.PI;
+                        break;
+                    case 'surround':
+                        reset = (elemWidth * 2) + (elemHeight * 2);
+                        break;
+                }
 
-      var requestAnimationFrame = window.requestAnimationFrame
-        || window.webkitRequestAnimationFrame
-        || window.mozRequestAnimationFrame
-        || window.msRequestAnimationFrame
-        || function(callback) { return setTimeout(callback, 1000 / 60); };
-      
-      var shape = attrs.glId;
-      var type = attrs.glType;
-      var width = attrs.glStrokeWidth || 6;
-      var diameter = parseInt(attrs.glDiameter) || 24;
-      var stroke = attrs.glStroke || '#000000';
-      var opacity = parseFloat(attrs.glOpacity) || .2;
-      var elemWidth = element[0].clientWidth;
-      var originOffset = (diameter === false)? 32 : diameter / 2;
-      var radius = originOffset - ((width / 2) + 2);
-      var reset;
-      switch(type){
-        case 'line':   reset = elemWidth;           break;
-        case 'circle': reset = diameter * Math.PI;  break;
-        case 'square': reset = (diameter - width) * 4;        break;
-      }
-      var animationTarget;
-      var thetaDelta = parseFloat(attrs.glSpeed) || 1;
-      
-      function doAnim() {
-        if(type === 'circle') {
-          animationTarget.setAttribute("transform", "rotate(" + animationTarget.currentTheta + ")");
-          animationTarget.currentTheta += .1
-        }
-        else {animationTarget.currentTheta += .6}
-        animationTarget.setAttribute("stroke-dasharray", animationTarget.currentTheta);
-        animationTarget.currentTheta += thetaDelta
-        if(animationTarget.currentTheta > reset){ animationTarget.currentTheta = 0}
-        requestAnimationFrame(doAnim);
-      }
-      
-      // <cc-loader cc-id="myId" cc-type="[circle,line]" cc-opacity="[default = .2]" cc-diameter="[int - circle type only]" cc-stroke="[# colour value]" cc-stroke-width="[default = 5]"></cc-loader>
+                var animationTarget;
 
-      if (type == 'line') {
+                function doAnim() {
+                    if (type === 'circle') {
+                        animationTarget.setAttribute("transform", "rotate(" + animationTarget.currentTheta + ")");
+                    }
+                    animationTarget.setAttribute("stroke-dasharray", animationTarget.currentTheta);
+                    animationTarget.currentTheta += thetaDelta
+                    if (animationTarget.currentTheta >= reset) animationTarget.currentTheta = 0;
+                    requestAnimationFrame(doAnim);
+                }
 
-        element.html('<svg' +
-          ' width="'+elemWidth+'" height="'+width+'" viewBox="0 0 '+elemWidth+' '+width+'">' +
-            '<g transform="translate('+ -width * 2+', '+width / 2+')">' +
-            '<line' +
-              ' id="'+shape + animationIndex +'"' +
-              ' fill="none"' + 
-              ' stroke="'+stroke+'"' + 
-              ' opacity="'+opacity+'"' +
-              ' stroke-width="'+width+'"' + 
-              ' stroke-linecap="round"' + 
-              ' stroke-miterlimit="10"' + 
-              ' x1="'+width+'"' + 
-              ' y1="0"' + 
-              ' x2="'+elemWidth+'"' + 
-              ' y2="0"' +
-              '>' +
-            '</line>' +
-            '</g>' +
-          '</svg>');
-          
-        animationTarget = document.getElementById(shape+animationIndex);
-        animationTarget.currentTheta = 0;
-        doAnim();
-        animationIndex++;
-          
-      }
-      
-      else if (type == 'circle') {
+                // <cc-loader cc-id="myId" cc-type="[circle,line,square,surround]" cc-opacity="[default = .2]" cc-speed="1" cc-diameter="[int - circle type only]" cc-stroke="[# colour value]" cc-stroke-width="[default = 5]"></cc-loader>
 
-        element.html('<svg' +
-          ' width="'+diameter+'" height="'+diameter+'" viewBox="0 0 '+diameter+' '+diameter+'">' +
-            '<g transform="translate('+originOffset+', '+originOffset+')">' +
-              ' <circle' +
-              ' id="'+shape + animationIndex +'"' +
-              ' fill="none"' +
-              ' stroke="'+stroke+'"' +
-              ' opacity="'+opacity+'"' +
-              ' stroke-width="'+width+'"' +
-              ' stroke-linecap="round"' +
-              ' stroke-miterlimit="10"' +
-              ' cx="0"' +
-              ' cy="0"' +
-              ' r="'+radius+'">' +
-            '</circle>' +
-          '</g>' +
-        '</svg>');
-        
-        animationTarget = document.getElementById(shape+animationIndex);
-        animationTarget.currentTheta = 0;
-        doAnim();
-        animationIndex++;
-      }
-      
-      else if (type == 'square') {
-        
-        var dims = diameter - width
+                if (type == 'line') {
 
-        element.html('<svg' +
-          ' width="'+diameter+'" height="'+diameter+'" viewBox="0 0 '+diameter+' '+diameter+'">' +
-            '<g transform="translate('+ width / 2+', '+width / 2+')">' +
-              ' <rect' +
-              ' id="'+shape + animationIndex +'"' +
-              ' fill="none"' +
-              ' stroke="'+stroke+'"' +
-              ' opacity="'+opacity+'"' +
-              ' stroke-width="'+width+'"' +
-              ' stroke-linecap="round"' +
-              ' stroke-miterlimit="10"' +
-              ' x="0"' + 
-              ' y="0"' + 
-              ' rx="'+width+'"' + 
-              ' ry="'+width+'"' + 
-              ' height="'+dims+'"' + 
-              ' width="'+dims+'">' +
-            '</rect>' +
-          '</g>' +
-        '</svg>');
-        
-        animationTarget = document.getElementById(shape+animationIndex);
-        animationTarget.currentTheta = 0;
-        doAnim();
-        animationIndex++;
-      }
-      
-      else {
-        element.html('Types allowed for this element are \'line\', \'circle\' and \'square\'');
-      }
-    },
-  };
-}]);
-  
-})();
+                    element.html('<svg class="fadeOut"' +
+                      ' width="' + elemWidth + '" height="' + width + '" viewBox="0 0 ' + elemWidth + ' ' + width + '">' +
+                        '<g transform="translate(' + -width * 2 + ', ' + width / 2 + ')">' +
+                        '<line' +
+                          ' id="' + shape + animationIndex + '"' +
+                          ' fill="none"' +
+                          ' stroke="' + stroke + '"' +
+                          ' opacity="' + opacity + '"' +
+                          ' stroke-width="' + width + '"' +
+                          ' stroke-linecap="round"' +
+                          ' stroke-miterlimit="10"' +
+                          ' x1="' + width + '"' +
+                          ' y1="0"' +
+                          ' x2="' + elemWidth + '"' +
+                          ' y2="0"' +
+                          '>' +
+                        '</line>' +
+                        '</g>' +
+                      '</svg>');
+
+                    animationTarget = document.getElementById(shape + animationIndex);
+                    animationTarget.currentTheta = 0;
+                    doAnim();
+                    animationIndex++;
+
+                }
+
+                else if (type == 'circle') {
+
+                    element.html('<svg class="fadeOut"' +
+                      ' width="' + elemWidth + '" height="' + elemHeight + '" viewBox="0 0 ' + elemWidth + ' ' + elemHeight + '">' +
+                        '<g transform="translate(' + originOffsetW + ', ' + originOffsetH + ')">' +
+                          ' <circle' +
+                          ' id="' + shape + animationIndex + '"' +
+                          ' fill="none"' +
+                          ' stroke="' + stroke + '"' +
+                          ' opacity="' + opacity + '"' +
+                          ' stroke-width="' + width + '"' +
+                          ' stroke-linecap="round"' +
+                          ' stroke-miterlimit="10"' +
+                          ' cx="0"' +
+                          ' cy="0"' +
+                          ' r="' + radius + '">' +
+                        '</circle>' +
+                      '</g>' +
+                    '</svg>');
+
+                    animationTarget = document.getElementById(shape + animationIndex);
+                    animationTarget.currentTheta = 0;
+                    doAnim();
+                    animationIndex++;
+                }
+
+                else if (type == 'square') {
+
+                    var dims = diameter - width
+
+                    element.html('<svg' +
+                      ' width="' + diameter + '" height="' + diameter + '" viewBox="0 0 ' + diameter + ' ' + diameter + '">' +
+                        '<g transform="translate(' + width / 2 + ', ' + width / 2 + ')">' +
+                          ' <rect' +
+                          ' id="' + shape + animationIndex + '"' +
+                          ' fill="none"' +
+                          ' stroke="' + stroke + '"' +
+                          ' opacity="' + opacity + '"' +
+                          ' stroke-width="' + width + '"' +
+                          ' stroke-linecap="round"' +
+                          ' stroke-miterlimit="10"' +
+                          ' x="0"' +
+                          ' y="0"' +
+                          ' rx="' + width + '"' +
+                          ' ry="' + width + '"' +
+                          ' height="' + dims + '"' +
+                          ' width="' + dims + '">' +
+                        '</rect>' +
+                      '</g>' +
+                    '</svg>');
+
+                    animationTarget = document.getElementById(shape + animationIndex);
+                    animationTarget.currentTheta = 0;
+                    doAnim();
+                    animationIndex++;
+                }
+                else if (type == 'surround') {
+
+                    var dims = diameter - width
+
+                    element.html('<svg' +
+                      ' width="' + elemWidth + '" height="' + elemHeight + '" viewBox="0 0 ' + elemWidth + ' ' + elemHeight + '" style="position:absolute;">' +
+                        '<g transform="translate(' + width / 2 + ', ' + width / 2 + ')">' +
+                          ' <rect' +
+                          ' id="' + shape + animationIndex + '"' +
+                          ' fill="none"' +
+                          ' stroke="' + stroke + '"' +
+                          ' opacity="' + opacity + '"' +
+                          ' stroke-width="' + width + '"' +
+                          ' stroke-linecap="round"' +
+                          ' stroke-miterlimit="10"' +
+                          ' x="0"' +
+                          ' y="0"' +
+                          ' rx="' + width + '"' +
+                          ' ry="' + width + '"' +
+                          ' height="' + parseInt(elemHeight - width) + '"' +
+                          ' width="' + elemWidth + '">' +
+                        '</rect>' +
+                      '</g>' +
+                    '</svg>');
+
+                    animationTarget = document.getElementById(shape + animationIndex);
+                    animationTarget.currentTheta = 0;
+                    doAnim();
+                    animationIndex++;
+                }
+
+                else {
+                    element.html('Types allowed for this element are \'line\', \'square\', \'circle\' and \'surround\'');
+                }
+            }
+        };
+    });
+})(angular);
