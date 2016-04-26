@@ -10,12 +10,12 @@ var Directive = function($window){
       || window.msRequestAnimationFrame
       || function (callback) { return setTimeout(callback, 1000 / 60); };
 
-      var shape = attrs.ccId;
-      var type = attrs.ccType;
-      var width = attrs.ccStrokeWidth || 6;
-      var diameter = attrs.ccDiameter || 24;
-      var stroke = attrs.ccStroke;
-      var opacity = attrs.ccOpacity || 1 / 5;
+      var shape = attrs.glId;
+      var type = attrs.glType;
+      var width = attrs.glStrokeWidth || 6;
+      var diameter = attrs.glDiameter || 24;
+      var stroke = attrs.glStroke;
+      var opacity = attrs.glOpacity || 1 / 5;
       var elemWidth = element[0].clientWidth;
       var elemHeight = element[0].parentElement.clientHeight;
       var originOffset = (diameter === false) ? 32 : diameter / 2;
@@ -23,7 +23,7 @@ var Directive = function($window){
       var originOffsetH = (elemHeight / 2) - (originOffset / 2);
       var radius = originOffset - ((width / 2) + 2);
       var reset;
-      var thetaDelta = parseFloat(attrs.ccSpeed) || 2;
+      var thetaDelta = parseFloat(attrs.glSpeed) || 2;
 
       switch (type) {
         case 'line':
