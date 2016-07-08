@@ -5,7 +5,7 @@ ___
 
 ## options
  For the circular option, there is the choice of diameter, stroke thickness, stroke colour and opacity.
- The speed is another matter and that is on my list of things to do.
+ The speed, although behaving exactly as expected, is currently user defined and can appear odd, but that is on my list of things to remedy.
  - gl-id - Sanity item so you know what's what
  - gl-type - *Must be set to either 'circle', 'square' or 'line' and cannot be missing
  - gl-strokeWidth - The stroke width of the spinner. Defaults to 6
@@ -23,6 +23,8 @@ ___
 
 Add the next line to your stylesheet
 > gl-spinner[gl-type='line'] {width:100%;display:block;height:auto;}
+
+If you are using a task runner like Grunt or Gulp, the version for compilers may be the best option. Use the regular version if you are simply including it as an http call.
 
 You can see the thing working in this plunk: https://plnkr.co/edit/jnSbb1
 
