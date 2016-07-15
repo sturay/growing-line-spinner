@@ -1,0 +1,15 @@
+gl-spinner, [gl-spinner] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16pt 0;
+  height:100px;
+  box-sizing:border-box;
+}
+gl-spinner svg, [gl-spinner] svg {
+  position:relative;
+  pointer-events:none;
+}
+
+[gl-type='line'] {width:100%;display:block;height:10pt;}

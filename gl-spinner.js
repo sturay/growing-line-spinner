@@ -19,18 +19,20 @@
                 var shape = attrs.glId;
                 var type = attrs.glType;
                 var width = attrs.glStrokeWidth || 6;
-                var diameter = attrs.glDiameter || 24;
-                var stroke = attrs.glStroke || rgba(0,0,0,1);
+                var diameter = attrs.glSize || 24;
+                var stroke = attrs.glStroke || 'rgba(0,0,0,1)';
                 var opacity = attrs.glOpacity || 1 / 5;
                 var linecap = attrs.glLinecap || 'round'; // butt, round or square
                 var elemWidth = element[0].parentElement.clientWidth;
-                var elemHeight = element[0].parentElement.clientHeight;
+                var elemHeight = element[0].clientHeight;
                 var originOffset = (diameter === false) ? 32 : diameter / 2;
                 var originOffsetW = elemWidth / 2;
                 var originOffsetH = (elemHeight / 2) - (originOffset / 2);
                 var radius = originOffset - ((width / 2) + 2);
                 var reset;
                 var thetaDelta = parseFloat(attrs.glSpeed) || 2;
+
+                console.log(element[0])
 
                 switch (type) {
                     case 'line':
