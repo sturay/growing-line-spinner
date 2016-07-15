@@ -27,7 +27,7 @@
                 var elemHeight = element[0].clientHeight;
                 var originOffset = (diameter === false) ? 32 : diameter / 2;
                 var originOffsetW = elemWidth / 2;
-                var originOffsetH = (elemHeight / 2) - (originOffset / 2);
+                var originOffsetH = (elemHeight / 2) - (originOffset / 2) + width;
                 var radius = originOffset - ((width / 2) + 2);
                 var reset;
                 var thetaDelta = parseFloat(attrs.glSpeed) || 2;
