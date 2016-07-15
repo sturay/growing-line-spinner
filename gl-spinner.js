@@ -20,9 +20,10 @@
                 var type = attrs.glType;
                 var width = attrs.glStrokeWidth || 6;
                 var diameter = attrs.glDiameter || 24;
-                var stroke = attrs.glStroke;
+                var stroke = attrs.glStroke || rgba(0,0,0,1);
                 var opacity = attrs.glOpacity || 1 / 5;
-                var elemWidth = element[0].clientWidth;
+                var linecap = attrs.glLinecap || 'round'; // butt, round or square
+                var elemWidth = element[0].parentElement.clientWidth;
                 var elemHeight = element[0].parentElement.clientHeight;
                 var originOffset = (diameter === false) ? 32 : diameter / 2;
                 var originOffsetW = elemWidth / 2;
@@ -71,7 +72,7 @@
                           ' stroke="' + stroke + '"' +
                           ' opacity="' + opacity + '"' +
                           ' stroke-width="' + width + '"' +
-                          ' stroke-linecap="round"' +
+                          ' stroke-linecap="' + linecap + '"' +
                           ' stroke-miterlimit="10"' +
                           ' x1="' + width + '"' +
                           ' y1="0"' +
@@ -100,7 +101,7 @@
                           ' stroke="' + stroke + '"' +
                           ' opacity="' + opacity + '"' +
                           ' stroke-width="' + width + '"' +
-                          ' stroke-linecap="round"' +
+                          ' stroke-linecap="' + linecap + '"' +
                           ' stroke-miterlimit="10"' +
                           ' cx="0"' +
                           ' cy="0"' +
@@ -128,7 +129,7 @@
                           ' stroke="' + stroke + '"' +
                           ' opacity="' + opacity + '"' +
                           ' stroke-width="' + width + '"' +
-                          ' stroke-linecap="round"' +
+                          ' stroke-linecap="' + linecap + '"' +
                           ' stroke-miterlimit="10"' +
                           ' x="0"' +
                           ' y="0"' +
@@ -158,7 +159,7 @@
                           ' stroke="' + stroke + '"' +
                           ' opacity="' + opacity + '"' +
                           ' stroke-width="' + width + '"' +
-                          ' stroke-linecap="round"' +
+                          ' stroke-linecap="' + linecap + '"' +
                           ' stroke-miterlimit="10"' +
                           ' x="0"' +
                           ' y="0"' +
