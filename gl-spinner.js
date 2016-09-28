@@ -4,7 +4,7 @@
 
     angular.module('svgLoader', [])
     .directive('glSpinner', function () {
-        var animationIndex = 0;
+              var animationIndex = 0;
 
         return {
             restrict: 'E',
@@ -27,9 +27,9 @@
                 var elemHeight = element[0].clientHeight;
                 var originOffset = (diameter === false) ? 32 : diameter / 2;
                 var originOffsetW = elemWidth / 2;
-                var originOffsetH = (elemHeight / 2) - (originOffset / 2) + width;
+                var originOffsetH = (elemHeight / 2) - (originOffset / 2);
                 var radius = originOffset - ((width / 2) + 2);
-                var reset;
+                var reset, dims;
                 var thetaDelta = parseFloat(attrs.glSpeed) || 2;
 
                 console.log(element[0])
@@ -61,7 +61,7 @@
                     requestAnimationFrame(doAnim);
                 }
 
-                // <cc-loader cc-id="myId" cc-type="[circle,line,square,surround]" cc-opacity="[default = .2]" cc-speed="1" cc-diameter="[int - circle type only]" cc-stroke="[# colour value]" cc-stroke-width="[default = 5]"></cc-loader>
+                // <gl-loader gl-id="myId" gl-type="[circle,line,square,surround]" gl-opacity="[default = .2]" gl-speed="1" gl-diameter="[int - circle type only]" gl-stroke="[# colour value]" gl-stroke-width="[default = 5]"></gl-loader>
 
                 if (type == 'line') {
 
@@ -95,8 +95,8 @@
                 else if (type == 'circle') {
 
                     element.html('<svg class="fadeOut"' +
-                      ' width="' + elemWidth + '" height="' + elemHeight + '" viewBox="0 0 ' + elemWidth + ' ' + elemHeight + '">' +
-                        '<g transform="translate(' + originOffsetW + ', ' + originOffsetH + ')">' +
+                      ' width="' + elemWidth + '" height="' + diameter + '" viewBox="0 0 ' + elemWidth + ' ' + diameter + '">' +
+                        '<g transform="translate(' + originOffsetW + ', ' + diameter / 2 + ')">' +
                           ' <circle' +
                           ' id="' + shape + animationIndex + '"' +
                           ' fill="none"' +
@@ -120,7 +120,7 @@
 
                 else if (type == 'square') {
 
-                    var dims = diameter - width
+                    dims = diameter - width;
 
                     element.html('<svg' +
                       ' width="' + diameter + '" height="' + diameter + '" viewBox="0 0 ' + diameter + ' ' + diameter + '">' +
@@ -150,7 +150,7 @@
                 }
                 else if (type == 'surround') {
 
-                    var dims = diameter - width
+                    dims = diameter - width;
 
                     element.html('<svg' +
                       ' width="' + elemWidth + '" height="' + elemHeight + '" viewBox="0 0 ' + elemWidth + ' ' + elemHeight + '" style="position:absolute;">' +
