@@ -21,38 +21,38 @@
     <h2>Circular</h2>
     
     <p>Most basic options - these must be set: give it an id and a type and youre good to go 
-    <br>&lt;gl-spinner gl-id="loader" gl-type="circle">&lt;/gl-spinner></p>
-    <gl-spinner gl-id="loader" gl-type="circle"></gl-spinner>
-    <p>This simply loads in the default values for a very basic spinner. The id is necessary as a point of reference in the DOM, especially when there is more than one instance of the spinner.</p>
+    <br>&lt;gl-spinner gl-id="loader0" gl-type="circle">&lt;/gl-spinner></p>
+    <gl-spinner gl-id="loader0" gl-type="circle"></gl-spinner>
+    <p>This simply loads in the default values for a very basic spinner. </p>
     
     <p>Change the size. You might need it to fill a larger space - or simply a space in a line where a small amount of dynamic data is being loaded. Remember that it is positioned absolutely and takes the dimensions of the containing element that must be positioned relatively to sit in the right place. A tweak to the 'g' element in the css file using translate: transform() might be necessary.
-    <br>&lt;gl-spinner gl-id="loader" gl-type="circle" gl-size="76"&gt;&lt;/gl-spinner&gt;</p>
-    <gl-spinner gl-id="loader" gl-type="circle" gl-size="76"></gl-spinner>
+    <br>&lt;gl-spinner gl-id="loader1" gl-type="circle" gl-size="76"&gt;&lt;/gl-spinner&gt;</p>
+    <gl-spinner gl-id="loader1" gl-type="circle" gl-size="76"></gl-spinner>
     
     <p>Change the stroke thickness. There is a balance here, but the smaller the size, the thinner the line. I could have added that as a rule, but decided to leave that option to the end user.
-    <br>&lt;gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke-width="1">&lt;/gl-spinner></p>
-    <gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke-width="1"></gl-spinner>
+    <br>&lt;gl-spinner gl-id="loader2" gl-type="circle" gl-size="76" gl-stroke-width="1">&lt;/gl-spinner></p>
+    <gl-spinner gl-id="loader2" gl-type="circle" gl-size="76" gl-stroke-width="1"></gl-spinner>
 
     <p>Change the colour. Any valid css colour will do and is applied to the element's 'stroke' property, so I thought I'd keep it that way.
-    <br>&lt;gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
-    <gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke-width="1" gl-stroke="#ed1b1e"></gl-spinner>
+    <br>&lt;gl-spinner gl-id="loader3" gl-type="circle" gl-size="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
+    <gl-spinner gl-id="loader3" gl-type="circle" gl-size="76" gl-stroke-width="1" gl-stroke="#ed1b1e"></gl-spinner>
 
     <p>Change the opacity. Accepts the css values for opacity from 0 to 1 with all of the bits in between.
-    <br>&lt;gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
-    <gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke-width="1" gl-stroke="#ed1b1e" gl-opacity=".8"></gl-spinner>
+    <br>&lt;gl-spinner gl-id="loader4" gl-type="circle" gl-size="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
+    <gl-spinner gl-id="loader4" gl-type="circle" gl-size="76" gl-stroke-width="1" gl-stroke="#ed1b1e" gl-opacity=".8"></gl-spinner>
     
     <p>Change the speed. If the spinner is small, it will be super fast, so with a size of 18, a speed of .25 isn't too bad. Large ones can be slow, so have a play.
-    <br>&lt;gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke="#ed1b1e" gl-speed="5"&gt;&lt;/gl-spinner&gt;</p>
-    <gl-spinner gl-id="loader" gl-type="circle" gl-size="76" gl-stroke-width="1" gl-stroke="#ed1b1e" gl-opacity=".8" gl-speed="5"></gl-spinner>
+    <br>&lt;gl-spinner gl-id="loader5" gl-type="circle" gl-size="76" gl-stroke="#ed1b1e" gl-speed="5"&gt;&lt;/gl-spinner&gt;</p>
+    <gl-spinner gl-id="loader5" gl-type="circle" gl-size="76" gl-stroke-width="1" gl-stroke="#ed1b1e" gl-opacity=".8" gl-speed="5"></gl-spinner>
     
     <p>Don't forget to add the styles above for the line version ( glspinner[cc-type='line'] {width:100%;display:block;} )
-    <br>&lt;gl-spinner gl-id="loader" gl-type="line" gl-size="76" gl-stroke-width="4" gl-stroke="#bada55" gl-opacity=".8" gl-speed="5"&gt;&lt;/gl-spinner&gt;</p>
-    <gl-spinner gl-id="loader" gl-type="line" gl-size="76" gl-stroke-width="4" gl-stroke="#bada55" gl-opacity=".8" gl-speed="5"></gl-spinner>
+    <br>&lt;gl-spinner gl-id="loader6" gl-type="line" gl-size="76" gl-stroke-width="4" gl-stroke="#bada55" gl-opacity=".8" gl-speed="5"&gt;&lt;/gl-spinner&gt;</p>
+    <gl-spinner gl-id="loader6" gl-type="line" gl-size="76" gl-stroke-width="4" gl-stroke="#bada55" gl-opacity=".8" gl-speed="5"></gl-spinner>
     <p>The only attribute that does not affect the line version is the size.</p>
 
     <p>Look Ma!! a square one.
-    <br>&lt;gl-spinner gl-id="loader" gl-type="square" gl-size="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
-    <gl-spinner gl-id="loader" gl-type="square" gl-size="76" gl-linecap="butt" gl-stroke-width="10" gl-stroke="#ed1b1e" gl-opacity=".8" gl-speed="1"></gl-spinner>
+    <br>&lt;gl-spinner gl-id="loader7" gl-type="square" gl-size="76" gl-stroke="#ed1b1e">&lt;/gl-spinner></p>
+    <gl-spinner gl-id="loader7" gl-type="square" gl-size="76" gl-linecap="butt" gl-stroke-width="10" gl-stroke="#ed1b1e" gl-opacity=".8" gl-speed="1"></gl-spinner>
 
   </body>
 
